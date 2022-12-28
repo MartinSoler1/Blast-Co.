@@ -1,0 +1,80 @@
+.input {
+  position: absolute;
+  display: inline-block;
+  padding: 1rem;
+  width: 90%;
+  max-width: 25rem;
+  height: 20  rem;
+  top: 15rem;
+  right: 5rem;
+  z-index:4;
+  background-color: white;
+  border-radius: 25px;
+}
+
+.input h3 {
+  top: 0px;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.input input {
+  display: inline-block;
+  margin: 0.5rem;
+  width: 2.5rem;
+  text-decoration: none;
+}
+
+.input label {
+  font-weight: bold;
+}
+
+.input div {
+  display: inline-block;
+}
+
+.input Button {
+  display: block;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input p {
+  font-size: 0.7rem;
+  color: rgb(125, 126, 126);
+  display: inline-block;
+  padding-right: 0.5rem;
+}
+
+.input button {
+  display: inline-block;
+  margin-left: 1.1rem;
+}
+
+.size{width: 100%;
+  display: block;
+}
+
+@media (max-width: 850px) {
+  .input {
+    margin: auto;
+    width: 100%;
+    top:32rem;
+    left: 0rem;
+    border-radius: 0px;
+font-size: 1rem; 
+position: absolute;
+z-index: 2;}  
+
+.input p {
+  font-size: 0.7rem;
+  color: rgb(125, 126, 126);
+  display: inline-block;
+  padding-right: 0.5rem;
+}
+
+}
