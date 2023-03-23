@@ -11,7 +11,16 @@
   margin: 0 0 0.5rem 0;
   color: #363636;
   font-size: 1.5rem;
+  font-weight: 700;
 }
+
+.cart-item p{
+  margin: 0 0 0.5rem 0;
+  color: #363636;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
 
 .summary {
   width: 10rem;

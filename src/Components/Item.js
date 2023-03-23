@@ -3,10 +3,13 @@ import classes from "./Item.module.css";
 import { useRef } from "react";
 import { useContext } from "react";
 import CartContext from "../store/cart-context";
+import { useState } from "react";
 
 const Item = (props) => {
+  const [sizeSelected, setSizeSelected] = useState("S");
+
   const cartCtx = useContext(CartContext);
-  const amountInputRef = useRef();              
+  const amountInputRef = useRef();
   const submitHandler = (event) => {
     event.preventDefault();
     const enteredAmount = amountInputRef.current.value;
@@ -20,21 +23,40 @@ const Item = (props) => {
       return;
     }
 
-            cartCtx.addItem({
-            id:props.id,
-            name:props.name,
-            amount: enteredAmountNumber,
-            price: props.price
-        });
-  
+    cartCtx.addItem({
+      id: props.id,
+      name: props.name,
+      size: sizeSelected,
+      amount: enteredAmountNumber,
+      price: props.price,
+    });
   };
+
+
   return (
     <li className={classes.item}>
       <img src={props.photo} alt="person on a wetsuit" />
       <h3>{props.name}</h3>
-      <p>{props.description}</p>
       <div>{`$ ${props.price}`}</div>
+
       <form className={classes.form} onSubmit={submitHandler}>
+        <div className={classes.details}>
+          <p htmlFor="sizes">Size:</p>
+          <select
+            id="sizes"
+            className="form-select w-50"
+            aria-label="Default select example"
+            value={sizeSelected}
+            onChange={(event) => {
+              setSizeSelected(event.target.value);
+            }}
+          >
+            <option >S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+          </select>
+        </div>
         <input
           ref={amountInputRef}
           label="Amount"
@@ -45,7 +67,7 @@ const Item = (props) => {
           step="1"
           defaultValue="1"
         />
-        <button>+ Add to Cart</button>
+        <button type="submit">+ Add to Cart</button>
       </form>
     </li>
   );

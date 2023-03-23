@@ -1,9 +1,6 @@
 .item {
-  display: block;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem;
-}
+  position: relative;
+margin: 3rem;}
 
 .item img {
   position: relative;
@@ -14,40 +11,54 @@
 }
 
 .item h3 {
-    font-size: 1.3rem;
+  font-size: 1.3rem;
   text-align: center;
+}
+
+.details p {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.details select {
+  display: inline-block;
+}
+
+.details option {
+  width: 4rem;
 }
 
 .item div {
   text-align: center;
   font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
-
-.item button{
-height:3rem;
-width: 10rem;    
-margin: 1rem 0.3rem;
-cursor: pointer;
-border-radius: 8px;
-border: 1px solid black;
-font-weight: 500;
-background-color: black;
-color:white;
+.item button {
+  height: 3rem;
+  width: 10rem;
+  margin: 1rem 0.3rem;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid black;
+  font-weight: 500;
+  background-color: black;
+  color: white;
 }
 
+.form {
+  text-align: center;
+}
 
-.form{text-align: center;}
-
-.form input{height: 2.5rem;
+.form input {
+  display: block;
+  height: 2.5rem;
   width: 2rem;
-text-align: center;
-margin-right: 0.5rem;}
-
+  text-align: center;
+  margin: 0px auto;
+}
 
 .item div button:hover,
-.item div button:active {    
+.item div button:active {
   background-color: #c4c5c3;
 }
-
-

@@ -1,5 +1,5 @@
 .cont {
-  margin: auto;
+  margin: 5rem auto 0rem;
   padding: 0;
   max-width: 100%;
   background: black;
@@ -76,7 +76,8 @@
 @media (max-width: 900px){
 
   .cont{background: black;
-    height: 17rem;}
+    height: 17rem;
+  }
 
 
 .cont input{

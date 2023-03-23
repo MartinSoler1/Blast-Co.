@@ -153,7 +153,7 @@ const SizeCalculator = (props) => {
           our size chart and check your height and weight - we suggest opting
           for a size up if you’re in the higher end of the weight range and
           you're unfamiliar with how our wetsuits fit. If you have any queries
-          please contact{" "}
+          please contact
           <a href="mailto:customerservice@blast.com">customer service</a>.
         </p>
       </Card>

@@ -12,10 +12,12 @@ const cartReducer = (state, action) => {
       state.totalAmount + action.item.price * action.item.amount;
 
     const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id === action.item.id
+      (item) => item.id === action.item.id && item.size === action.item.size
     );
+
     const existingCartItem = state.items[existingCartItemIndex];
     let updatedItems;
+
 
     if (existingCartItem) {
       const updatedItem = {
@@ -78,6 +80,7 @@ const CartProvider = (props) => {
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
   };
+
   return (
     <CartContext.Provider value={cartContext}>
       {props.children}
