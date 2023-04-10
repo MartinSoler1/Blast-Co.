@@ -1,158 +1,100 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import classes from "./SizeCalculator.module.css";
 import ErrorModal from "../UI/ErrorModal";
+import CalculatorContext from "../store/sizeCalc-context";
+import CalculatorInputs from "./SizeCalculator-Inputs/CalculatorInputs";
 
 const SizeCalculator = (props) => {
-  const [enteredHeight, setEnteredHeight] = useState("");
-  const [enteredWeight, setEnteredWeight] = useState("");
-  const [enteredWaterTemp, setEnteredWaterTemp] = useState("");
   const [res, setRes] = useState("");
-  const [thickness, setThickness] = useState("");
-  const [error, setError] = useState();
+
+  const ctx = useContext(CalculatorContext);
 
   const sizeResultHandler = (event) => {
     event.preventDefault();
 
     if (
-      enteredHeight.trim().length === 0 ||
-      enteredWeight.trim().length === 0 ||
-      enteredWaterTemp.trim().length === 0
-    ) {
-      setError({
-        title: "Invalid Input",
-        message: "Please enter a valid value (non-empty values)",
+      ctx.height.trim().length === 0 || ctx.weight.trim().length === 0 || ctx.waterTemp.trim().length === 0 ) 
+      {
+      ctx.setError({
+        title: "Invalid Input", message: "Please enter a valid value (non-empty values)",
       });
       return;
     }
 
-    if (enteredWeight <= 0 || enteredHeight <= 0 || enteredWaterTemp <= 0) {
-      setError({
-        title: "Invalid input",
-        message: "Please enter a valid value (>0).",
+    if (ctx.weight <= 0 || ctx.height <= 0 || ctx.waterTemp <= 0) {
+      ctx.setError({
+        title: "Invalid input", message: "Please enter a valid value (>0).",
       });
       return;
     }
-
-    const sizeFilter = props.sizeList.wetsuitSize.filter(function (el) {
+    
+    const sizeFilter = props.sizeList.wetsuitSize.filter((el) => {
       return (
-        +enteredWeight >= el.minWieght &&
-        +enteredWeight <= el.maxWeight &&
-        +enteredHeight >= el.minHeight &&
-        +enteredHeight <= el.maxHeight
+        +ctx.weight >= el.minWieght && +ctx.weight <= el.maxWeight && +ctx.height >= el.minHeight && +ctx.height <= el.maxHeight
       );
     });
 
     const sizeResult = () => {
-      if (sizeFilter[0] === undefined) {
-        return props.sizeList.sizeMessage[0];
-      } else {
-        return sizeFilter[0].size;
-      }
+      return sizeFilter.length
+        ? sizeFilter[0].size
+        : props.sizeList.sizeMessage[0];
     };
 
-    const thicknessFilter = props.sizeList.wetsThickness.filter(function (
-      temp
-    ) {
-      return (
-        +enteredWaterTemp >= temp.minTemp && +enteredWaterTemp <= temp.maxTemp
-      );
+    const thicknessFilter = props.sizeList.wetsThickness.filter((temp) => {
+      return +ctx.waterTemp >= temp.minTemp && +ctx.waterTemp <= temp.maxTemp;
     });
 
     const thickResult = () => {
-      if (thicknessFilter[0] === undefined) {
-        return props.sizeList.sizeMessage[1];
-      } else {
-        return thicknessFilter[0].thickness;
-      }
+      return thicknessFilter.length
+        ? thicknessFilter[0].thickness
+        : props.sizeList.sizeMessage[1];
     };
-
     setRes(() => {
-      return sizeResult();
+      return sizeResult() + " " + thickResult();
     });
-
-    setThickness(() => {
-      return thickResult();
-    });
-    setEnteredHeight("");
-    setEnteredWeight("");
-    setEnteredWaterTemp("");
+    ctx.setEnteredHeight(""); 
+    ctx.setEnteredWeight("");
+    ctx.setEnteredWaterTemp("");
   };
 
   const finalResult = () => {
-    return res === props.sizeList.sizeMessage[0]
-      ? res
-      : res + " " + thickness && thickness === props.sizeList.sizeMessage[1]
-      ? thickness
-      : res + " " + thickness;
-  };
-
-  const heightChangeHandler = (event) => {
-    setEnteredHeight(event.target.value);
-  };
-
-  const weightChangeHandler = (event) => {
-    setEnteredWeight(event.target.value);
-  };
-
-  const WetsuitThicknessHandler = (event) => {
-    setEnteredWaterTemp(event.target.value);
+    return res.includes(props.sizeList.sizeMessage[0])
+      ? props.sizeList.sizeMessage[0]
+      : res.includes(props.sizeList.sizeMessage[1])
+      ? props.sizeList.sizeMessage[1]
+      : res;
   };
 
   const errorHandler = () => {
-    setError(null);
+    ctx.setError(null);
   };
 
   return (
     <div>
-      {error && (
+      {ctx.error && (
         <ErrorModal
-          title={error.title}
-          message={error.message}
-          onConfirm={errorHandler}
+          title={ctx.error.title}
+          message={ctx.error.message}
+          onClose={errorHandler}
         />
       )}
       <Card className={classes.input}>
         <form onSubmit={sizeResultHandler}>
           <h3>Size Calculator</h3>
-          <div>
-            <label htmlFor="height">Heigth (cm)</label>
-            <input
-              type="number"
-              id="height"
-              value={enteredHeight}
-              onChange={heightChangeHandler}
-            />
-          </div>
-          <div>
-            <label htmlFor="weight">Weight (kg)</label>
-            <input
-              type="number"
-              id="weight"
-              value={enteredWeight}
-              onChange={weightChangeHandler}
-            />
-          </div>
-          <div>
-            <label htmlFor="thickness">Water temp. (c°)</label>
-            <input
-              type="number"
-              id="thickness"
-              value={enteredWaterTemp}
-              onChange={WetsuitThicknessHandler}
-            />
-          </div>
+          <CalculatorInputs />
           <Button type="submit">Submit</Button>
         </form>
-        <p className={classes.size}>size recommended:</p>
+        <p >size recommended:</p>
         <div className={classes.res}>{finalResult()}</div>
-        <p>
+        <p className={classes.message}>
           * This is a recommended size only. Please now click this hyperlink to
           our size chart and check your height and weight - we suggest opting
           for a size up if you’re in the higher end of the weight range and
           you're unfamiliar with how our wetsuits fit. If you have any queries
-          please contact <a href="mailto:customerservice@blast.com">customer service</a>.
+          please contact{" "}
+          <a href="mailto:customerservice@blast.com">customer service</a>.
         </p>
       </Card>
     </div>

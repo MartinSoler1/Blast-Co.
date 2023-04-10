@@ -4,6 +4,7 @@
     padding: 0;
     max-height: 20rem;
     overflow: auto;
+    font-size: 20px;
   }
   
   .total {
@@ -12,7 +13,7 @@
     align-items: center;
     font-weight: bold;
     font-size: 1.5rem;
-    margin: 1rem 0;
+    margin: 1rem 2rem;
   }
   
   .actions {
@@ -24,6 +25,7 @@
     cursor: pointer;
     background-color: transparent;
     border: 1px solid #000000;
+    margin-top: 1rem;
     padding: 0.5rem 2rem;
     border-radius: 25px;
     margin-left: 1rem;
@@ -44,3 +46,5 @@
     background-color: #313131;
     color: white;
   }
+
+

@@ -44,7 +44,7 @@ const Item = (props) => {
           <p htmlFor="sizes">Size:</p>
           <select
             id="sizes"
-            className="form-select w-50"
+            className="form-select w-25"
             aria-label="Default select example"
             value={sizeSelected}
             onChange={(event) => {

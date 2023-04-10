@@ -9,10 +9,9 @@
   .chart ul {
     position: relative  ;
     display: block;
-    top: 15rem;
-    z-index: 0;
+    top: 20rem;
     padding: 0rem;
-    margin-bottom: 15rem;
+    margin-bottom: 22rem;
     
    }
 }

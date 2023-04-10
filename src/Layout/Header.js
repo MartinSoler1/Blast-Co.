@@ -44,7 +44,7 @@ const Header = (props) => {
 
     sizeMessage: [
       "Sorry we are having difficulty determining your size. Please contact customer service.",
-      "Sorry, we don't have any wetsuits for that water temperature",
+      "Sorry, we don't have any wetsuits for that water temperature.",
     ],
   };
 

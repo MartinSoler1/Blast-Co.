@@ -4,6 +4,7 @@ import Footer from "./Layout/Footer";
 import Cart from "./Components/Cart/Cart";
 import React, {useState } from "react";
 import CartProvider from "./store/CartProvider";
+import SizeCalcProvider from "./store/SizeCalcProvider";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -18,10 +19,12 @@ function App() {
 
   return (
     <CartProvider>
+      <SizeCalcProvider>
       {cartIsShown && <Cart onShowCart={showCartHandler} onClose={hideCartHandler}/>}
       <Header  onShowCart={showCartHandler} />
       <AvailableItem />
       <Footer />
+      </SizeCalcProvider>
     </CartProvider>
   );
 }

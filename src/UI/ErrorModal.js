@@ -1,25 +1,24 @@
 import React from "react";
-import Card from "./Card";
 import Button from "./Button";
-import classes from './ErrorModal.module.css'
+import Modal from './Modal'
+import classes from './Modal.module.css'
 
 const ErrorModal = (props) =>{
 
     return(
-        <div>
-        <div className={classes.backdrop} onClick={props.onConfirm}/>
-      <Card className={classes.modal}>
-        <header className={classes.header}>
+      <Modal onClose={props.onClose} >
+        <div >
+       <header className={classes.header} >
           <h2>{props.title}</h2>
         </header>
-        <div className={classes.content}>
-          <p>{props.message}</p>
+        <div className={classes.message}>
+          <p >{props.message}</p>
         </div>
-        <footer className={classes.actions}>
-            <Button onClick={props.onConfirm}>Okay</Button>
-        </footer>
-      </Card>;
-      </div>)   
+        <footer className={classes.footer}>
+            <Button onClick={props.onClose}>Okay</Button>
+        </footer></div>
+     </Modal>
+      )   
     };
 
 export default ErrorModal;
