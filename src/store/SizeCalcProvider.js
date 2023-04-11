@@ -22,13 +22,13 @@ const SizeCalcProvider = (props) => {
 
 
   const calculatorContext = {
-    height: enteredHeight,
+    enteredHeight: enteredHeight,
     heightChangeHandler: heightChangeHandler,
     setEnteredHeight: setEnteredHeight,
-    weight: enteredWeight,
+    enteredWeight: enteredWeight,
     weightChangeHandler: weightChangeHandler,
     setEnteredWeight: setEnteredWeight,
-    waterTemp: enteredWaterTemp,
+    enteredWaterTemp: enteredWaterTemp,
     WetsuitThicknessHandler: WetsuitThicknessHandler,
     setEnteredWaterTemp: setEnteredWaterTemp,
     error: error,

@@ -15,7 +15,7 @@ const SizeCalculator = (props) => {
     event.preventDefault();
 
     if (
-      ctx.height.trim().length === 0 || ctx.weight.trim().length === 0 || ctx.waterTemp.trim().length === 0 ) 
+      ctx.enteredHeight.trim().length === 0 || ctx.enteredWeight.trim().length === 0 || ctx.enteredWaterTemp.trim().length === 0 ) 
       {
       ctx.setError({
         title: "Invalid Input", message: "Please enter a valid value (non-empty values)",
@@ -23,7 +23,7 @@ const SizeCalculator = (props) => {
       return;
     }
 
-    if (ctx.weight <= 0 || ctx.height <= 0 || ctx.waterTemp <= 0) {
+    if (ctx.enteredWeight <= 0 || ctx.enteredHeight <= 0 || ctx.enteredWaterTemp <= 0) {
       ctx.setError({
         title: "Invalid input", message: "Please enter a valid value (>0).",
       });
@@ -32,7 +32,7 @@ const SizeCalculator = (props) => {
     
     const sizeFilter = props.sizeList.wetsuitSize.filter((el) => {
       return (
-        +ctx.weight >= el.minWieght && +ctx.weight <= el.maxWeight && +ctx.height >= el.minHeight && +ctx.height <= el.maxHeight
+        +ctx.enteredWeight >= el.minWieght && +ctx.enteredWeight <= el.maxWeight && +ctx.enteredHeight >= el.minHeight && +ctx.enteredHeight <= el.maxHeight
       );
     });
 
@@ -43,16 +43,16 @@ const SizeCalculator = (props) => {
     };
 
     const thicknessFilter = props.sizeList.wetsThickness.filter((temp) => {
-      return +ctx.waterTemp >= temp.minTemp && +ctx.waterTemp <= temp.maxTemp;
+      return +ctx.enteredWaterTemp >= temp.minTemp && +ctx.enteredWaterTemp <= temp.maxTemp;
     });
 
-    const thickResult = () => {
+    const thicknessResult = () => {
       return thicknessFilter.length
         ? thicknessFilter[0].thickness
         : props.sizeList.sizeMessage[1];
     };
     setRes(() => {
-      return sizeResult() + " " + thickResult();
+      return sizeResult() + " " + thicknessResult();
     });
     ctx.setEnteredHeight(""); 
     ctx.setEnteredWeight("");

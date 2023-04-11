@@ -1,8 +1,8 @@
-import { Fragment } from "react";
 import classes from "./Header.module.css";
 import headerImg from "./../assets/headerImg.jpeg";
 import CartButton from "./CartButton";
 import SizeCalculator from "../Components/SizeCalculator";
+import SizeCalcProvider from "../store/SizeCalcProvider";
 
 const Header = (props) => {
   const sizeObj = {
@@ -49,19 +49,21 @@ const Header = (props) => {
   };
 
   return (
-    <Fragment>
+    <>
       <header className={classes.header}>
         <h1>Blast Co.</h1>
         <CartButton onClick={props.onShowCart} />
       </header>
       <div className={classes["main-image"]}>
-        <SizeCalculator sizeList={sizeObj} />
+        <SizeCalcProvider>
+          <SizeCalculator sizeList={sizeObj} />
+        </SizeCalcProvider>
         <h2>
           High Quality Natural Plant Based Rubber wetsuits for the best price.
         </h2>
         <img src={headerImg} alt="person on a wetsuit checking the waves" />
       </div>
-    </Fragment>
+    </>
   );
 };
 

@@ -10,7 +10,7 @@ const ctx = useContext(CalculatorContext)
         <input
           type="number"
           id="height"
-          value={ctx.height}
+          value={ctx.enteredHeight}
           onChange={ctx.heightChangeHandler}
         />
       </div>
@@ -19,7 +19,7 @@ const ctx = useContext(CalculatorContext)
         <input
           type="number"
           id="weight"
-          value={ctx.weight}
+          value={ctx.enteredWeight}
           onChange={ctx.weightChangeHandler}
         />
       </div>
@@ -28,7 +28,7 @@ const ctx = useContext(CalculatorContext)
         <input
           type="number"
           id="thickness"
-          value={ctx.waterTemp}
+          value={ctx.enteredWaterTemp}
           onChange={ctx.WetsuitThicknessHandler}
         />
       </div>

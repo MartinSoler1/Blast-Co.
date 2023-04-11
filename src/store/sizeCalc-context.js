@@ -1,13 +1,13 @@
 import React from "react";
 
 const CalculatorContext = React.createContext({
-  height: "",
+  enteredHeight: "",
   heightChangeHandler: () => {},
   setEnteredHeight: () => {},
-  weight: "",
+  enteredWeight: "",
   weightChangeHandler: () => {},
   setEnteredWeight: () => {},
-  waterTemp: "",
+  enteredWaterTemp: "",
   WetsuitThicknessHandler: () => {},
   setEnteredWaterTemp: () => {},
   error: "",
